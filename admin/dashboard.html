@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Super Admin Command Center | Tuition Chai</title>
+  
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="dashboard-layout has-bottom-nav">
+
+  <!-- Mobile Backdrop -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+
+  <!-- ================= ADMIN SIDEBAR ================= -->
+  <aside class="dashboard-sidebar" id="dashboard-sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="sidebar-brand">
+        <img src="../assets/images/logo-icon.png" alt="Tuition Chai">
+        <span class="sidebar-brand-text">Tuition Chai</span>
+      </a>
+      <span class="sidebar-role-badge role-admin">Super Admin</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Operations</div>
+      <a href="#overview" class="sidebar-link active" onclick="switchSection('overview', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Overview & Stats
+      </a>
+      <a href="#verifications" class="sidebar-link" onclick="switchSection('verifications', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Tutor Verifications
+        <span class="pill" style="background-color: var(--color-accent-amber); color: #000;">14</span>
+      </a>
+      <a href="#tuitions" class="sidebar-link" onclick="switchSection('tuitions', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        Tuition Moderation
+        <span class="pill" style="background-color: var(--color-status-danger); color: #fff;">9</span>
+      </a>
+      <a href="#users" class="sidebar-link" onclick="switchSection('users', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        User Management
+        <span class="pill">668</span>
+      </a>
+
+      <div class="nav-section-title">Governance & Logs</div>
+      <a href="#audit-logs" class="sidebar-link" onclick="switchSection('audit-logs', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Admin Audit Logs
+      </a>
+      <a href="#reports" class="sidebar-link" onclick="switchSection('reports', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        Analytics & Reports
+      </a>
+
+      <div class="nav-section-title">Platform</div>
+      <a href="#settings" class="sidebar-link" onclick="switchSection('settings', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Site Configuration
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-avatar-sm" style="background-color: var(--color-accent-amber); color: #000;">SA</div>
+      <div class="user-info-sm">
+        <div class="user-name-sm">Root Administrator</div>
+        <div class="user-email-sm">Chattogram HQ</div>
+      </div>
+      <a href="../login.html" class="sidebar-logout" title="Log Out">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT WRAPPER ================= -->
+  <div class="dashboard-main">
+    
+    <!-- Topbar -->
+    <header class="dashboard-topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle Menu">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+        <div>
+          <h1 class="page-title">Super Admin Command Center</h1>
+          <div class="page-breadcrumb">Full Platform Control & Database Security</div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <!-- Bilingual Switcher -->
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn lang-btn-en active">EN</button>
+          <button type="button" class="lang-btn lang-btn-bn">বাংলা</button>
+        </div>
+
+        <button class="btn btn-outline btn-sm" onclick="exportDataCSV()">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Export CSV
+        </button>
+
+        <button class="topbar-action-btn" onclick="showAdminAlerts()" aria-label="Security Alerts">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span class="notif-badge" style="background-color: var(--color-status-warning);">3</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="dashboard-content">
+      
+      <!-- Live Statistics Overview (10 Key Platform Metrics) -->
+      <section class="dashboard-stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div class="stat-card">
+          <div class="stat-icon teal">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+          </div>
+          <div>
+            <div class="stat-value">668</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon amber">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <div>
+            <div class="stat-value">14</div>
+            <div class="stat-label">Pending Verifications</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon navy">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+          </div>
+          <div>
+            <div class="stat-value">9</div>
+            <div class="stat-label">Pending Tuitions</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          </div>
+          <div>
+            <div class="stat-value">312</div>
+            <div class="stat-label">Placements Done</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Tutor Verification Queue -->
+      <section class="panel" style="margin-bottom: 2rem;" id="verifications-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            Tutor Verification Review Queue
+          </div>
+          <span class="badge badge-warning">14 Requires Approval</span>
+        </div>
+        <div class="panel-body" style="padding: 0;">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tutor Name</th>
+                  <th>University & Dept</th>
+                  <th>Submitted Documents</th>
+                  <th>GPA / Academic</th>
+                  <th>Submission Date</th>
+                  <th>Verification Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="cell-user">
+                      <div class="user-avatar-tiny">MA</div>
+                      <div>
+                        <div style="font-weight: 700;">Mahmudul Alam</div>
+                        <div style="font-size: 0.75rem; color: var(--color-text-muted);">mahmud.cu@gmail.com</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600;">University of Chittagong (CU)</div>
+                    <div style="font-size: 0.775rem; color: var(--color-text-muted);">Physics (3rd Year)</div>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-outline" onclick="inspectDocument('CU Student ID Card', 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80')">
+                      View Student ID
+                    </button>
+                  </td>
+                  <td>SSC: 5.00 | HSC: 5.00</td>
+                  <td>Nov 01, 2026</td>
+                  <td>
+                    <div style="display: flex; gap: 0.35rem;">
+                      <button class="btn btn-sm btn-primary" onclick="approveTutor('Mahmudul Alam')">Approve Badge</button>
+                      <button class="btn btn-sm btn-outline" style="color: var(--color-status-danger); border-color: var(--color-status-danger);" onclick="rejectTutor('Mahmudul Alam')">Reject</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="cell-user">
+                      <div class="user-avatar-tiny">SR</div>
+                      <div>
+                        <div style="font-weight: 700;">Samira Rahman</div>
+                        <div style="font-size: 0.75rem; color: var(--color-text-muted);">samira.cmc@gmail.com</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600;">Chittagong Medical College (CMC)</div>
+                    <div style="font-size: 0.775rem; color: var(--color-text-muted);">MBBS (2nd Year)</div>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-outline" onclick="inspectDocument('CMC Admission Card', 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80')">
+                      View College ID
+                    </button>
+                  </td>
+                  <td>SSC: 5.00 | HSC: 5.00</td>
+                  <td>Oct 31, 2026</td>
+                  <td>
+                    <div style="display: flex; gap: 0.35rem;">
+                      <button class="btn btn-sm btn-primary" onclick="approveTutor('Samira Rahman')">Approve Badge</button>
+                      <button class="btn btn-sm btn-outline" style="color: var(--color-status-danger); border-color: var(--color-status-danger);" onclick="rejectTutor('Samira Rahman')">Reject</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Tuition Post Moderation Queue -->
+      <section class="panel" style="margin-bottom: 2rem;" id="tuitions-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+            Tuition Post Moderation & Fraud Filter
+          </div>
+          <span class="badge badge-teal">9 Posts Pending Approval</span>
+        </div>
+        <div class="panel-body" style="padding: 0;">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Post ID</th>
+                  <th>Guardian</th>
+                  <th>Class & Subjects</th>
+                  <th>Location</th>
+                  <th>Budget</th>
+                  <th>Moderation Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>TC-2026-092</strong></td>
+                  <td>Kamrul Islam (01711-******)</td>
+                  <td>Class 8 - Math & English</td>
+                  <td>GEC Circle, Chattogram</td>
+                  <td>৳ 6,000 /mo</td>
+                  <td>
+                    <div style="display: flex; gap: 0.35rem;">
+                      <button class="btn btn-sm btn-primary" onclick="approveTuitionPost('TC-2026-092')">Publish</button>
+                      <button class="btn btn-sm btn-outline" onclick="featureTuitionPost('TC-2026-092')">Feature</button>
+                      <button class="btn btn-sm btn-ghost" style="color: var(--color-status-danger);" onclick="rejectTuitionPost('TC-2026-092')">Remove</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>TC-2026-093</strong></td>
+                  <td>M. Chowdhury (01819-******)</td>
+                  <td>Class 10 - Biology & Chemistry</td>
+                  <td>Nasirabad, Chattogram</td>
+                  <td>৳ 7,500 /mo</td>
+                  <td>
+                    <div style="display: flex; gap: 0.35rem;">
+                      <button class="btn btn-sm btn-primary" onclick="approveTuitionPost('TC-2026-093')">Publish</button>
+                      <button class="btn btn-sm btn-outline" onclick="featureTuitionPost('TC-2026-093')">Feature</button>
+                      <button class="btn btn-sm btn-ghost" style="color: var(--color-status-danger);" onclick="rejectTuitionPost('TC-2026-093')">Remove</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Admin Activity Audit Log -->
+      <section class="panel" id="audit-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Security & Activity Audit Trail
+          </div>
+          <span class="badge badge-navy">Immutable Log</span>
+        </div>
+        <div class="panel-body">
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-icon teal">✓</div>
+              <div class="activity-info">
+                <div class="activity-text"><strong>Tutor Verified:</strong> Admin approved verification for Tanvir Ahmed (CUET CSE).</div>
+                <div class="activity-time">Today, 11:20 AM • IP: 103.114.***.***</div>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon amber">⚡</div>
+              <div class="activity-info">
+                <div class="activity-text"><strong>Tuition Published:</strong> Post TC-2026-088 approved and made public in Panchlaish.</div>
+                <div class="activity-time">Today, 09:45 AM • IP: 103.114.***.***</div>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon red">✕</div>
+              <div class="activity-info">
+                <div class="activity-text"><strong>Account Suspended:</strong> Suspended duplicate tutor registration attempt (ID: 994).</div>
+                <div class="activity-time">Yesterday, 04:12 PM • Security System</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Document Inspector Modal -->
+  <div class="modal-overlay" id="document-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="doc-title">Document Inspection</h3>
+        <button class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <img id="doc-image" src="" alt="Certificate" style="max-height: 380px; width: auto; margin: 0 auto; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-text-muted);">
+          Encrypted private storage URL verified by Supabase storage policy.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Smartphone Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Admin Navigation">
+    <a href="#overview" class="mobile-bottom-item active" onclick="switchSection('overview', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>Overview</span>
+    </a>
+    <a href="#verifications" class="mobile-bottom-item" onclick="switchSection('verifications', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      <span>Verify</span>
+    </a>
+    <a href="#tuitions" class="mobile-bottom-item" onclick="switchSection('tuitions', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+      <span>Moderate</span>
+    </a>
+    <a href="#users" class="mobile-bottom-item" onclick="switchSection('users', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+      <span>Users</span>
+    </a>
+    <a href="#audit-panel" class="mobile-bottom-item" onclick="switchSection('audit-panel', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      <span>Logs</span>
+    </a>
+  </nav>
+
+  <script src="../js/translations.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    function toggleSidebar() {
+      const sb = document.getElementById('dashboard-sidebar');
+      const bd = document.getElementById('sidebar-backdrop');
+      sb.classList.toggle('open');
+      bd.classList.toggle('show');
+    }
+
+    function switchSection(sectionId, linkEl) {
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      if (linkEl) linkEl.classList.add('active');
+      window.TuitionChai.showToast('Admin Navigation', 'Viewing ' + sectionId.toUpperCase());
+    }
+
+    function inspectDocument(title, url) {
+      document.getElementById('doc-title').textContent = title;
+      document.getElementById('doc-image').src = url;
+      window.TuitionChai.openModal('document-modal');
+    }
+
+    function approveTutor(name) {
+      window.TuitionChai.showToast('Tutor Verified', `${name} has been granted the official Verified Tutor badge.`, 'success');
+    }
+
+    function rejectTutor(name) {
+      const reason = prompt('Please specify rejection reason for ' + name + ':', 'Illegible student ID photo');
+      if (reason) {
+        window.TuitionChai.showToast('Verification Rejected', `${name} notified: ${reason}`, 'info');
+      }
+    }
+
+    function approveTuitionPost(id) {
+      window.TuitionChai.showToast('Tuition Published', `${id} is now live on the public feed and notification broadcast sent.`, 'success');
+    }
+
+    function featureTuitionPost(id) {
+      window.TuitionChai.showToast('Featured Post', `${id} pinned to homepage spotlight.`, 'success');
+    }
+
+    function rejectTuitionPost(id) {
+      if (confirm('Are you sure you want to delete tuition post ' + id + '?')) {
+        window.TuitionChai.showToast('Post Removed', `${id} was flagged and removed.`, 'info');
+      }
+    }
+
+    function exportDataCSV() {
+      window.TuitionChai.showToast('Export Initiated', 'Generating encrypted CSV report for users and placements...', 'info');
+    }
+
+    function showAdminAlerts() {
+      alert('Security Monitor:\n- 3 tutors uploaded verification documents awaiting review\n- Database connection healthy (Supabase Singapore cluster)\n- 0 unauthorized privilege escalation attempts');
+    }
+  </script>
+</body>
+</html>

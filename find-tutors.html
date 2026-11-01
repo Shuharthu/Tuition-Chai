@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Find Verified Tutors in Chattogram | Tuition Chai</title>
+  
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/logo-horizontal.png" alt="Tuition Chai">
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link" data-i18n="navHome">Home</a></li>
+          <li><a href="find-tutors.html" class="nav-link active" data-i18n="navFindTutors">Find Tutors</a></li>
+          <li><a href="find-tuition.html" class="nav-link" data-i18n="navFindTuition">Find Tuition</a></li>
+          <li><a href="index.html#how-it-works" class="nav-link" data-i18n="navHowItWorks">How It Works</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="navAbout">About Us</a></li>
+          <li><a href="contact.html" class="nav-link" data-i18n="navContact">Contact</a></li>
+
+          <li class="mobile-actions">
+            <a href="login.html" class="btn btn-outline" data-i18n="navLogin">Log In</a>
+            <a href="register.html?role=guardian" class="btn btn-primary">Post Tuition</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <!-- Bilingual Switcher -->
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn lang-btn-en active">EN</button>
+          <button type="button" class="lang-btn lang-btn-bn">বাংলা</button>
+        </div>
+
+        <a href="login.html" class="btn btn-ghost" data-i18n="navLogin">Log In</a>
+        <a href="register.html?role=guardian" class="btn btn-primary">Post Tuition</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="section section-white" style="padding: 3rem 0; border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div style="max-width: 720px;">
+        <span class="badge badge-teal" style="margin-bottom: 0.75rem;">Verified Tutors Directory</span>
+        <h1>Browse 240+ Verified Tutors in Chattogram</h1>
+        <p style="font-size: 1.05rem; margin-top: 0.5rem;">
+          Connect with high-achieving undergraduate & postgraduate mentors from CUET, CU, CMC and top institutions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Listing Section -->
+  <section class="section section-subtle">
+    <div class="container">
+      
+      <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2rem;" class="hero-grid">
+        
+        <!-- Filter Sidebar -->
+        <aside class="card" style="align-self: flex-start; position: sticky; top: 90px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.1rem;">Filters</h3>
+            <button class="btn btn-sm btn-ghost" onclick="resetFilters()">Reset</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">University</label>
+            <select id="filter-uni" class="form-select" onchange="applyTutorFilters()">
+              <option value="">All Universities</option>
+              <option value="CUET">CUET</option>
+              <option value="CMC">Chittagong Medical College</option>
+              <option value="CU">University of Chittagong</option>
+              <option value="Premier">Premier University</option>
+              <option value="IIUC">IIUC</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Area in Chattogram</label>
+            <select id="filter-location" class="form-select" onchange="applyTutorFilters()">
+              <option value="">All Locations</option>
+              <option value="Panchlaish">Panchlaish</option>
+              <option value="Nasirabad">Nasirabad</option>
+              <option value="GEC Circle">GEC Circle</option>
+              <option value="Khulshi">Khulshi</option>
+              <option value="Agrabad">Agrabad</option>
+              <option value="Halishahar">Halishahar</option>
+              <option value="Chawkbazar">Chawkbazar</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" id="filter-subject" class="form-control" placeholder="Physics, Math, English..." oninput="applyTutorFilters()">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Teaching Method</label>
+            <select id="filter-method" class="form-select" onchange="applyTutorFilters()">
+              <option value="">Any Method</option>
+              <option value="Home">Home Tutoring</option>
+              <option value="Online">Online Tutoring</option>
+            </select>
+          </div>
+
+          <div style="background: var(--color-bg-subtle); padding: 0.85rem; border-radius: var(--radius-md); font-size: 0.775rem; color: var(--color-text-muted); margin-top: 1rem;">
+            🔒 All tutors undergo ID authentication. Phone numbers are private until mutual confirmation.
+          </div>
+        </aside>
+
+        <!-- Tutor Grid -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div style="font-weight: 600; color: var(--color-text-muted);" id="results-count">Showing verified tutors</div>
+            <select class="form-select" style="width: auto; padding: 0.4rem 0.85rem; font-size: 0.85rem;">
+              <option>Sort by: Rating (High to Low)</option>
+              <option>Sort by: Expected Salary (Low to High)</option>
+              <option>Sort by: Experience</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;" id="all-tutors-grid">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Profile Modal -->
+  <div class="modal-overlay" id="tutor-modal">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title" id="tutor-modal-title">Tutor Profile</h3>
+        <button class="modal-close" data-modal-close aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="tutor-modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+        <button type="button" class="btn btn-primary" onclick="requestTuitionContact()">Request Tuition Contact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Tuition Chai (tuitionchai.com). Chattogram, Bangladesh.</div>
+        <div>Phone: 01300-015091 | WhatsApp: +8801300-015091</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/sample-data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTutors(window.sampleData.featuredTutors);
+    });
+
+    function renderTutors(tutors) {
+      const grid = document.getElementById('all-tutors-grid');
+      document.getElementById('results-count').textContent = `Showing ${tutors.length} verified tutors`;
+
+      if (tutors.length === 0) {
+        grid.innerHTML = `
+          <div class="card empty-state" style="grid-column: 1 / -1;">
+            <div class="empty-title">No tutors match this search</div>
+            <div class="empty-desc">Try loosening your filter criteria or reset filters.</div>
+            <button class="btn btn-outline btn-sm" onclick="resetFilters()">Reset Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = tutors.map(t => `
+        <div class="tutor-card">
+          <div class="tutor-header">
+            <img src="${t.avatar}" alt="${t.name}" class="tutor-avatar">
+            <div class="tutor-meta">
+              <div class="tutor-name">
+                ${t.name}
+                <span class="badge badge-verified">Verified</span>
+              </div>
+              <div class="tutor-uni">${t.university}</div>
+              <div class="tutor-dept">${t.department}</div>
+            </div>
+          </div>
+
+          <div class="tutor-stats-strip">
+            <div class="strip-item">
+              <div class="strip-val">⭐ ${t.rating}</div>
+              <div class="strip-lbl">${t.reviewsCount} reviews</div>
+            </div>
+            <div class="strip-item">
+              <div class="strip-val">${t.teachingExperience}</div>
+              <div class="strip-lbl">Exp</div>
+            </div>
+            <div class="strip-item">
+              <div class="strip-val">${t.method.includes('Home') ? 'Home' : 'Online'}</div>
+              <div class="strip-lbl">Method</div>
+            </div>
+          </div>
+
+          <div class="tag-list">
+            ${t.subjects.map(s => `<span class="tag">${s}</span>`).join('')}
+          </div>
+
+          <div class="tutor-footer">
+            <div class="tutor-salary">
+              ৳ ${t.expectedSalary.toLocaleString('en-BD')} <span>/mo</span>
+            </div>
+            <button class="btn btn-sm btn-outline" onclick="viewTutorModal('${t.id}')">View Profile</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function applyTutorFilters() {
+      const uni = document.getElementById('filter-uni').value.toLowerCase();
+      const loc = document.getElementById('filter-location').value.toLowerCase();
+      const sub = document.getElementById('filter-subject').value.toLowerCase();
+      const method = document.getElementById('filter-method').value.toLowerCase();
+
+      const filtered = window.sampleData.featuredTutors.filter(t => {
+        const matchUni = !uni || t.university.toLowerCase().includes(uni);
+        const matchLoc = !loc || t.preferredLocations.some(l => l.toLowerCase().includes(loc));
+        const matchSub = !sub || t.subjects.some(s => s.toLowerCase().includes(sub));
+        const matchMethod = !method || t.method.toLowerCase().includes(method);
+        return matchUni && matchLoc && matchSub && matchMethod;
+      });
+
+      renderTutors(filtered);
+    }
+
+    function resetFilters() {
+      document.getElementById('filter-uni').value = '';
+      document.getElementById('filter-location').value = '';
+      document.getElementById('filter-subject').value = '';
+      document.getElementById('filter-method').value = '';
+      renderTutors(window.sampleData.featuredTutors);
+    }
+
+    function viewTutorModal(id) {
+      const tutor = window.sampleData.featuredTutors.find(t => t.id === id);
+      if (!tutor) return;
+      document.getElementById('tutor-modal-title').textContent = tutor.name + ' - Verified Profile';
+      document.getElementById('tutor-modal-body').innerHTML = `
+        <div style="display: flex; gap: 1.25rem; margin-bottom: 1.25rem;">
+          <img src="${tutor.avatar}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <h3>${tutor.name}</h3>
+            <div style="color: var(--color-primary-teal); font-weight: 700;">${tutor.university} • ${tutor.department}</div>
+            <div style="font-size: 0.85rem; color: var(--color-text-muted);">${tutor.currentYear}</div>
+            <span class="badge badge-verified" style="margin-top: 0.35rem;">✓ Official Verified Badge</span>
+          </div>
+        </div>
+        <p style="margin-bottom: 1rem;">${tutor.bio}</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div><strong>Expected Salary:</strong> ৳ ${tutor.expectedSalary.toLocaleString('en-BD')}/mo</div>
+          <div><strong>Experience:</strong> ${tutor.teachingExperience}</div>
+        </div>
+      `;
+      window.TuitionChai.openModal('tutor-modal');
+    }
+
+    function requestTuitionContact() {
+      window.TuitionChai.closeModal('tutor-modal');
+      window.location.href = 'login.html?ref=guardian_request';
+    }
+  </script>
+</body>
+</html>

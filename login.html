@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sign In | Tuition Chai - Tutor Marketplace</title>
+  
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background-color: var(--color-bg-base); display: flex; flex-direction: column; min-height: 100vh;">
+
+  <!-- Simple Auth Header -->
+  <header style="padding: 1.25rem 0; background: var(--color-header-bg); border-bottom: 1px solid var(--color-border); backdrop-filter: blur(12px);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/logo-horizontal.png" alt="Tuition Chai" style="height: 42px; width: auto;">
+      </a>
+      
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn lang-btn-en active">EN</button>
+          <button type="button" class="lang-btn lang-btn-bn">বাংলা</button>
+        </div>
+
+        <div style="font-size: 0.9rem; color: var(--color-text-muted);">
+          Don't have an account? <a href="register.html" style="font-weight: 600;">Register free</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Auth Container -->
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem;">
+    <div class="card" style="max-width: 460px; width: 100%; box-shadow: var(--shadow-lg); padding: 2.25rem;">
+      
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="badge badge-teal" style="margin-bottom: 0.75rem;">Secure Access</span>
+        <h2>Welcome Back</h2>
+        <p style="font-size: 0.925rem; margin-top: 0.25rem;">Sign in to your Tuition Chai dashboard</p>
+      </div>
+
+      <!-- Quick Role Mode Switcher -->
+      <div class="tabs-nav" style="justify-content: center; margin-bottom: 1.5rem;">
+        <button type="button" class="tab-btn active" id="role-guardian-btn" onclick="selectRole('guardian')">Guardian</button>
+        <button type="button" class="tab-btn" id="role-tutor-btn" onclick="selectRole('tutor')">Tutor</button>
+        <button type="button" class="tab-btn" id="role-admin-btn" onclick="selectRole('admin')">Super Admin</button>
+      </div>
+
+      <!-- Demo Credentials Quick Selector -->
+      <div style="background-color: var(--color-teal-light); border: 1px dashed var(--color-primary-teal); border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.8rem; color: var(--color-primary-teal); display: flex; justify-content: space-between; align-items: center;">
+        <span><strong>Interactive Preview:</strong> Test accounts ready</span>
+        <button type="button" class="btn btn-sm btn-primary" id="autofill-btn" onclick="autofillDemo()">Fill Demo</button>
+      </div>
+
+      <form id="login-form" onsubmit="handleLoginSubmit(event)">
+        
+        <div class="form-group">
+          <label class="form-label" for="login-email">
+            Email Address or Phone
+            <span class="required">*</span>
+          </label>
+          <div class="input-group">
+            <input type="text" id="login-email" class="form-control" placeholder="name@example.com or 017..." required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+            <label class="form-label" for="login-password" style="margin-bottom: 0;">Password <span class="required">*</span></label>
+            <a href="#" onclick="openForgotPassword(event)" style="font-size: 0.8rem;">Forgot password?</a>
+          </div>
+          <div class="input-group">
+            <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+            <button type="button" class="input-suffix-btn" onclick="togglePasswordVisibility('login-password')">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; font-size: 0.875rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="remember-me" checked> Remember this device
+          </label>
+          <span style="font-size: 0.775rem; color: var(--color-text-light);">256-bit SSL</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;" id="login-submit-btn">
+          Sign In to Dashboard
+          <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </form>
+
+      <div style="margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); text-align: center; font-size: 0.8rem; color: var(--color-text-muted);">
+        Protected by Supabase Row Level Security & Enterprise Encryption.<br>
+        Chattogram Target Launch Platform.
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal-overlay" id="forgot-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Reset Password</h3>
+        <button class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem; font-size: 0.9rem;">
+          Enter your registered email address. We will send you a secure password reset link.
+        </p>
+        <div class="form-group">
+          <label class="form-label" for="reset-email">Email Address</label>
+          <input type="email" id="reset-email" class="form-control" placeholder="guardian@example.com">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="sendPasswordReset()">Send Reset Link</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/translations.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let currentRole = 'guardian';
+
+    function selectRole(role) {
+      currentRole = role;
+      document.getElementById('role-guardian-btn').classList.toggle('active', role === 'guardian');
+      document.getElementById('role-tutor-btn').classList.toggle('active', role === 'tutor');
+      document.getElementById('role-admin-btn').classList.toggle('active', role === 'admin');
+      
+      const submitBtn = document.getElementById('login-submit-btn');
+      if (role === 'guardian') submitBtn.textContent = 'Sign In as Guardian';
+      else if (role === 'tutor') submitBtn.textContent = 'Sign In as Tutor';
+      else submitBtn.textContent = 'Sign In as Super Admin';
+    }
+
+    function autofillDemo() {
+      const emailField = document.getElementById('login-email');
+      const passField = document.getElementById('login-password');
+      
+      if (currentRole === 'guardian') {
+        emailField.value = 'guardian.demo@tuitionchai.com';
+        passField.value = 'GuardianPass2026!';
+      } else if (currentRole === 'tutor') {
+        emailField.value = 'tutor.demo@tuitionchai.com';
+        passField.value = 'TutorPass2026!';
+      } else {
+        emailField.value = 'superadmin@tuitionchai.com';
+        passField.value = 'AdminSecure2026!';
+      }
+
+      window.TuitionChai.showToast('Credentials Populated', `Sample ${currentRole.toUpperCase()} login data ready.`);
+    }
+
+    function togglePasswordVisibility(fieldId) {
+      const f = document.getElementById(fieldId);
+      f.type = f.type === 'password' ? 'text' : 'password';
+    }
+
+    function openForgotPassword(e) {
+      e.preventDefault();
+      window.TuitionChai.openModal('forgot-modal');
+    }
+
+    function sendPasswordReset() {
+      const email = document.getElementById('reset-email').value;
+      if (!email) {
+        alert('Please enter your email.');
+        return;
+      }
+      window.TuitionChai.closeModal('forgot-modal');
+      window.TuitionChai.showToast('Reset Link Dispatched', `Password recovery link sent to ${email}`);
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      window.TuitionChai.showToast('Authenticating...', `Verifying credentials for ${currentRole} role.`, 'info');
+
+      setTimeout(() => {
+        if (currentRole === 'guardian') {
+          window.location.href = 'guardian/dashboard.html';
+        } else if (currentRole === 'tutor') {
+          window.location.href = 'tutor/dashboard.html';
+        } else {
+          window.location.href = 'admin/dashboard.html';
+        }
+      }, 700);
+    }
+  </script>
+</body>
+</html>

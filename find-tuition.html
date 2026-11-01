@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Find Tuition in Chattogram | Tuition Chai</title>
+  
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/logo-horizontal.png" alt="Tuition Chai">
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link" data-i18n="navHome">Home</a></li>
+          <li><a href="find-tutors.html" class="nav-link" data-i18n="navFindTutors">Find Tutors</a></li>
+          <li><a href="find-tuition.html" class="nav-link active" data-i18n="navFindTuition">Find Tuition</a></li>
+          <li><a href="index.html#how-it-works" class="nav-link" data-i18n="navHowItWorks">How It Works</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="navAbout">About Us</a></li>
+          <li><a href="contact.html" class="nav-link" data-i18n="navContact">Contact</a></li>
+
+          <li class="mobile-actions">
+            <a href="login.html" class="btn btn-outline" data-i18n="navLogin">Log In</a>
+            <a href="register.html?role=tutor" class="btn btn-primary" data-i18n="ctaBecomeTutor">Apply as Tutor</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <!-- Bilingual Switcher -->
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn lang-btn-en active">EN</button>
+          <button type="button" class="lang-btn lang-btn-bn">বাংলা</button>
+        </div>
+
+        <a href="login.html" class="btn btn-ghost" data-i18n="navLogin">Log In</a>
+        <a href="register.html?role=tutor" class="btn btn-primary" data-i18n="ctaBecomeTutor">Become a Tutor</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="section section-white" style="padding: 3rem 0; border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div style="max-width: 720px;">
+        <span class="badge badge-teal" style="margin-bottom: 0.75rem;">Verified Tuition Board</span>
+        <h1>Active Tuition Requirements in Chattogram</h1>
+        <p style="font-size: 1.05rem; margin-top: 0.5rem;">
+          Browse approved tuition posts from genuine guardians in Nasirabad, Panchlaish, GEC, Khulshi, Agrabad, and more.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Listing Section -->
+  <section class="section section-subtle">
+    <div class="container">
+      
+      <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2rem;" class="hero-grid">
+        
+        <!-- Filter Sidebar -->
+        <aside class="card" style="align-self: flex-start; position: sticky; top: 90px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.1rem;">Filter Tuitions</h3>
+            <button class="btn btn-sm btn-ghost" onclick="resetTuitionFilters()">Reset</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Student Class</label>
+            <select id="tuition-filter-class" class="form-select" onchange="applyTuitionFilters()">
+              <option value="">All Classes</option>
+              <option value="Class 8">Class 8</option>
+              <option value="Class 10">Class 10 (SSC)</option>
+              <option value="HSC">HSC (1st & 2nd Year)</option>
+              <option value="Class 6">Class 6</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Area in Chattogram</label>
+            <select id="tuition-filter-area" class="form-select" onchange="applyTuitionFilters()">
+              <option value="">All Areas</option>
+              <option value="Nasirabad">Nasirabad</option>
+              <option value="Panchlaish">Panchlaish</option>
+              <option value="GEC">GEC Circle</option>
+              <option value="Halishahar">Halishahar</option>
+              <option value="Khulshi">Khulshi</option>
+              <option value="Agrabad">Agrabad</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Curriculum</label>
+            <select id="tuition-filter-curr" class="form-select" onchange="applyTuitionFilters()">
+              <option value="">All Curriculums</option>
+              <option value="Bangla Medium">Bangla Medium</option>
+              <option value="English Version">English Version</option>
+              <option value="English Medium">English Medium</option>
+            </select>
+          </div>
+
+          <div style="background: var(--color-bg-subtle); padding: 0.85rem; border-radius: var(--radius-md); font-size: 0.775rem; color: var(--color-text-muted); margin-top: 1rem;">
+            🛡️ 0% hidden commission. Direct payment from guardian to tutor upon placement.
+          </div>
+        </aside>
+
+        <!-- Tuition Feed -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div style="font-weight: 600; color: var(--color-text-muted);" id="tuitions-count">Available Openings</div>
+            <select class="form-select" style="width: auto; padding: 0.4rem 0.85rem; font-size: 0.85rem;">
+              <option>Sort by: Most Recent</option>
+              <option>Sort by: Salary (High to Low)</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;" id="tuitions-feed-list">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Tuition Chai (tuitionchai.com). Chattogram, Bangladesh.</div>
+        <div>Phone: 01300-015091 | WhatsApp: +8801300-015091</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/sample-data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTuitionFeed(window.sampleData.latestTuitions);
+    });
+
+    function renderTuitionFeed(tuitions) {
+      const feed = document.getElementById('tuitions-feed-list');
+      document.getElementById('tuitions-count').textContent = `Showing ${tuitions.length} active tuition requirements`;
+
+      if (tuitions.length === 0) {
+        feed.innerHTML = `
+          <div class="card empty-state">
+            <div class="empty-title">No tuitions match your current filters</div>
+            <div class="empty-desc">Try resetting your filter parameters.</div>
+            <button class="btn btn-outline btn-sm" onclick="resetTuitionFilters()">Reset Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      feed.innerHTML = tuitions.map(tu => `
+        <div class="tuition-card ${tu.id === 'TC-2026-089' ? 'featured' : ''}">
+          <div class="tuition-top">
+            <span class="tuition-id">${tu.id} • Posted ${tu.postedDate} • Deadline: ${tu.deadline}</span>
+            <span class="badge badge-teal">${tu.studentClass}</span>
+          </div>
+
+          <h3 class="tuition-title">${tu.title}</h3>
+
+          <div class="tuition-meta-grid">
+            <div class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>
+              <span>${tu.location}</span>
+            </div>
+            <div class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              <span>${tu.daysPerWeek} Days / Week</span>
+            </div>
+            <div class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path></svg>
+              <span>${tu.curriculum}</span>
+            </div>
+            <div class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path></svg>
+              <span>${tu.preferredTutor}</span>
+            </div>
+          </div>
+
+          <p class="tuition-desc">${tu.desc}</p>
+
+          <div class="tag-list" style="margin-bottom: 0.75rem;">
+            ${tu.subjects.map(s => `<span class="tag">${s}</span>`).join('')}
+          </div>
+
+          <div class="tuition-footer">
+            <div class="tuition-budget">
+              ৳ ${tu.monthlyBudget.toLocaleString('en-BD')} <span>/month</span>
+            </div>
+            <a href="register.html?role=tutor&tuition=${tu.id}" class="btn btn-primary btn-sm">
+              Apply for Tuition
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function applyTuitionFilters() {
+      const cls = document.getElementById('tuition-filter-class').value.toLowerCase();
+      const area = document.getElementById('tuition-filter-area').value.toLowerCase();
+      const curr = document.getElementById('tuition-filter-curr').value.toLowerCase();
+
+      const filtered = window.sampleData.latestTuitions.filter(tu => {
+        const matchCls = !cls || tu.studentClass.toLowerCase().includes(cls);
+        const matchArea = !area || tu.location.toLowerCase().includes(area);
+        const matchCurr = !curr || tu.curriculum.toLowerCase().includes(curr);
+        return matchCls && matchArea && matchCurr;
+      });
+
+      renderTuitionFeed(filtered);
+    }
+
+    function resetTuitionFilters() {
+      document.getElementById('tuition-filter-class').value = '';
+      document.getElementById('tuition-filter-area').value = '';
+      document.getElementById('tuition-filter-curr').value = '';
+      renderTuitionFeed(window.sampleData.latestTuitions);
+    }
+  </script>
+</body>
+</html>

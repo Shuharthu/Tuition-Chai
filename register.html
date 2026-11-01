@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Create an Account | Tuition Chai - Tutor Marketplace</title>
+  
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background-color: var(--color-bg-base); display: flex; flex-direction: column; min-height: 100vh;">
+
+  <!-- Header -->
+  <header style="padding: 1.25rem 0; background: var(--color-header-bg); border-bottom: 1px solid var(--color-border); backdrop-filter: blur(12px);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/logo-horizontal.png" alt="Tuition Chai" style="height: 42px; width: auto;">
+      </a>
+      
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn lang-btn-en active">EN</button>
+          <button type="button" class="lang-btn lang-btn-bn">বাংলা</button>
+        </div>
+
+        <div style="font-size: 0.9rem; color: var(--color-text-muted);">
+          Already registered? <a href="login.html" style="font-weight: 600;">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Register Form Container -->
+  <main style="flex: 1; padding: 3rem 1.5rem;">
+    <div class="container container-narrow">
+      <div class="card" style="box-shadow: var(--shadow-lg); padding: 2.5rem;">
+        
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span class="badge badge-teal" style="margin-bottom: 0.75rem;">Join Tuition Chai</span>
+          <h2>Create Your Account</h2>
+          <p style="font-size: 0.95rem; margin-top: 0.25rem;">Select your role to get started with tailored tools</p>
+        </div>
+
+        <!-- Role Selector Tabs -->
+        <div class="radio-tiles-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 2.25rem;">
+          <input type="radio" name="accountRole" id="role-guardian-radio" class="radio-tile-input" checked onchange="toggleRegistrationRole('guardian')">
+          <label for="role-guardian-radio" class="radio-tile-label">
+            <svg class="icon" style="width: 28px; height: 28px; margin-bottom: 0.4rem; color: var(--color-primary-teal);" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>I am a Guardian</span>
+            <small style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: normal; margin-top: 0.2rem;">Looking for verified tutors</small>
+          </label>
+
+          <input type="radio" name="accountRole" id="role-tutor-radio" class="radio-tile-input" onchange="toggleRegistrationRole('tutor')">
+          <label for="role-tutor-radio" class="radio-tile-label">
+            <svg class="icon" style="width: 28px; height: 28px; margin-bottom: 0.4rem; color: var(--color-primary-teal);" viewBox="0 0 24 24"><path d="M12 2l10 5-10 5-10-5 10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+            <span>I am a Tutor</span>
+            <small style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: normal; margin-top: 0.2rem;">University student seeking tuition</small>
+          </label>
+        </div>
+
+        <!-- GUARDIAN FORM -->
+        <form id="guardian-register-form" onsubmit="handleGuardianRegister(event)">
+          <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-border);">
+            Guardian Information
+          </h3>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;" class="grid-equal">
+            <div class="form-group">
+              <label class="form-label" for="g-name">Full Name <span class="required">*</span></label>
+              <input type="text" id="g-name" class="form-control" placeholder="e.g. Dr. Farhana Begum" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="g-email">Email Address <span class="required">*</span></label>
+              <input type="email" id="g-email" class="form-control" placeholder="guardian@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="g-phone">Mobile Number (BD) <span class="required">*</span></label>
+              <div class="input-group">
+                <span class="input-prefix">+88</span>
+                <input type="tel" id="g-phone" class="form-control" placeholder="01819-000000" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="g-location">Primary Area in Chattogram <span class="required">*</span></label>
+              <select id="g-location" class="form-select" required>
+                <option value="">Select your neighborhood...</option>
+                <option value="Panchlaish">Panchlaish</option>
+                <option value="Nasirabad">Nasirabad</option>
+                <option value="GEC Circle">GEC Circle</option>
+                <option value="Khulshi">Khulshi</option>
+                <option value="Halishahar">Halishahar</option>
+                <option value="Agrabad">Agrabad</option>
+                <option value="Chawkbazar">Chawkbazar</option>
+                <option value="Katalganj">Katalganj</option>
+                <option value="Mehedibag">Mehedibag</option>
+                <option value="Muradpur">Muradpur</option>
+                <option value="Other">Other Area in Ctg</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="g-lang">Preferred Language</label>
+              <select id="g-lang" class="form-select">
+                <option value="bn">বাংলা (Bengali)</option>
+                <option value="en" selected>English</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="g-password">Password <span class="required">*</span></label>
+              <input type="password" id="g-password" class="form-control" placeholder="Min 8 characters" required>
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+            <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; color: var(--color-text-muted);">
+              <input type="checkbox" required style="margin-top: 3px;">
+              <span>I agree to Tuition Chai's <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and safety guidelines.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            Create Guardian Account & Post Tuition
+          </button>
+        </form>
+
+        <!-- TUTOR FORM -->
+        <form id="tutor-register-form" style="display: none;" onsubmit="handleTutorRegister(event)">
+          <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-border);">
+            Tutor Academic & Profile Details
+          </h3>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;" class="grid-equal">
+            <div class="form-group">
+              <label class="form-label" for="t-name">Full Name <span class="required">*</span></label>
+              <input type="text" id="t-name" class="form-control" placeholder="e.g. Tanvir Ahmed" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-email">Email Address <span class="required">*</span></label>
+              <input type="email" id="t-email" class="form-control" placeholder="tutor@cuet.ac.bd or gmail" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-phone">Mobile Number <span class="required">*</span></label>
+              <div class="input-group">
+                <span class="input-prefix">+88</span>
+                <input type="tel" id="t-phone" class="form-control" placeholder="01700-000000" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-uni">University / Institution <span class="required">*</span></label>
+              <select id="t-uni" class="form-select" required>
+                <option value="">Select University...</option>
+                <option value="CUET">Chittagong University of Eng & Tech (CUET)</option>
+                <option value="CU">University of Chittagong (CU)</option>
+                <option value="CMC">Chittagong Medical College (CMC)</option>
+                <option value="IIUC">International Islamic Univ Chittagong (IIUC)</option>
+                <option value="Premier">Premier University, Chittagong</option>
+                <option value="EDU">East Delta University (EDU)</option>
+                <option value="Chittagong College">Chittagong College</option>
+                <option value="Other">Other Institution</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-dept">Department / Major <span class="required">*</span></label>
+              <input type="text" id="t-dept" class="form-control" placeholder="e.g. Computer Science & Eng, MBBS, Physics" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-level">Current Year / Semester <span class="required">*</span></label>
+              <select id="t-level" class="form-select" required>
+                <option value="1st Year">1st Year / Undergraduate</option>
+                <option value="2nd Year">2nd Year / Undergraduate</option>
+                <option value="3rd Year">3rd Year / Undergraduate</option>
+                <option value="4th Year">4th Year / Final Year</option>
+                <option value="Masters">Postgraduate / Master's</option>
+                <option value="Graduate">Graduated</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-ssc">SSC Result (GPA) <span class="required">*</span></label>
+              <input type="text" id="t-ssc" class="form-control" placeholder="e.g. GPA 5.00 (Science)" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-hsc">HSC Result (GPA) <span class="required">*</span></label>
+              <input type="text" id="t-hsc" class="form-control" placeholder="e.g. GPA 5.00 (Science)" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-subjects">Preferred Subjects <span class="required">*</span></label>
+              <input type="text" id="t-subjects" class="form-control" placeholder="e.g. Physics, Higher Math, ICT" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-salary">Expected Monthly Salary (BDT) <span class="required">*</span></label>
+              <div class="input-group">
+                <span class="input-prefix">৳</span>
+                <input type="number" id="t-salary" class="form-control" placeholder="e.g. 7000" min="2000" step="500" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-exp">Teaching Experience <span class="required">*</span></label>
+              <select id="t-exp" class="form-select" required>
+                <option value="Fresh Tutor">Fresh / Less than 1 year</option>
+                <option value="1-2 Years">1 - 2 Years</option>
+                <option value="3+ Years">3+ Years</option>
+                <option value="5+ Years">5+ Years</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="t-method">Preferred Method <span class="required">*</span></label>
+              <select id="t-method" class="form-select" required>
+                <option value="Home & Online">Both Home Tutoring & Online</option>
+                <option value="Home Only">Home Tutoring Only</option>
+                <option value="Online Only">Online Tutoring Only</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label" for="t-bio">Short Biography & Teaching Approach <span class="required">*</span></label>
+            <textarea id="t-bio" class="form-textarea" placeholder="Briefly describe your teaching background, strengths, and mentorship style..." required></textarea>
+          </div>
+
+          <!-- Document Upload Dropzone Preview -->
+          <div class="form-group">
+            <label class="form-label">
+              Student ID Card Verification (Optional during signup, required for badge)
+              <span class="optional">Private & Encrypted</span>
+            </label>
+            <div class="dropzone" onclick="document.getElementById('t-doc-file').click()">
+              <input type="file" id="t-doc-file" style="display: none;" accept="image/*,.pdf" onchange="previewUpload(this)">
+              <svg class="dropzone-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <div class="dropzone-text" id="dropzone-label">Click to upload Student ID or Certificate</div>
+              <div class="dropzone-hint">PNG, JPG, PDF up to 5MB. Stored in encrypted private Supabase Storage.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t-password">Account Password <span class="required">*</span></label>
+            <input type="password" id="t-password" class="form-control" placeholder="Min 8 characters" required>
+          </div>
+
+          <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+            <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; color: var(--color-text-muted);">
+              <input type="checkbox" required style="margin-top: 3px;">
+              <span>I confirm that all educational information provided is accurate and agree to the <a href="#">Tutor Code of Conduct</a>.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-navy btn-lg" style="width: 100%;">
+            Complete Tutor Registration
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/translations.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function toggleRegistrationRole(role) {
+      const guardianForm = document.getElementById('guardian-register-form');
+      const tutorForm = document.getElementById('tutor-register-form');
+      
+      if (role === 'guardian') {
+        guardianForm.style.display = 'block';
+        tutorForm.style.display = 'none';
+      } else {
+        guardianForm.style.display = 'none';
+        tutorForm.style.display = 'block';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('role') === 'tutor') {
+        document.getElementById('role-tutor-radio').checked = true;
+        toggleRegistrationRole('tutor');
+      }
+    });
+
+    function previewUpload(input) {
+      if (input.files && input.files[0]) {
+        document.getElementById('dropzone-label').textContent = 'Selected: ' + input.files[0].name;
+        window.TuitionChai.showToast('Document Attached', input.files[0].name + ' will be encrypted on upload.', 'info');
+      }
+    }
+
+    function handleGuardianRegister(e) {
+      e.preventDefault();
+      window.TuitionChai.showToast('Account Created!', 'Welcome to Tuition Chai. Redirecting to Guardian Dashboard...', 'success');
+      setTimeout(() => {
+        window.location.href = 'guardian/dashboard.html';
+      }, 900);
+    }
+
+    function handleTutorRegister(e) {
+      e.preventDefault();
+      window.TuitionChai.showToast('Profile Registered!', 'Verification pending review. Redirecting to Tutor Dashboard...', 'success');
+      setTimeout(() => {
+        window.location.href = 'tutor/dashboard.html';
+      }, 900);
+    }
+  </script>
+</body>
+</html>

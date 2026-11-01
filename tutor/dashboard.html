@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tutor Dashboard | Tuition Chai</title>
+  
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="dashboard-layout has-bottom-nav">
+
+  <!-- Mobile Backdrop -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="dashboard-sidebar" id="dashboard-sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="sidebar-brand">
+        <img src="../assets/images/logo-icon.png" alt="Tuition Chai">
+        <span class="sidebar-brand-text">Tuition Chai</span>
+      </a>
+      <span class="sidebar-role-badge role-tutor">Tutor</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <a href="#overview" class="sidebar-link active" onclick="switchSection('overview', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Dashboard
+      </a>
+      <a href="#opportunities" class="sidebar-link" onclick="switchSection('opportunities', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Tuition Openings
+        <span class="pill">94</span>
+      </a>
+      <a href="#applications" class="sidebar-link" onclick="switchSection('applications', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg>
+        My Applications
+        <span class="pill">5</span>
+      </a>
+
+      <div class="nav-section-title">Credentials</div>
+      <a href="#verification" class="sidebar-link" onclick="openVerificationModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Verification Center
+        <span class="badge badge-verified" style="font-size: 0.65rem;">Active</span>
+      </a>
+      <a href="#profile" class="sidebar-link" onclick="switchSection('profile', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Public Profile
+      </a>
+
+      <div class="nav-section-title">Settings</div>
+      <a href="#settings" class="sidebar-link" onclick="switchSection('settings', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Account Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-avatar-sm" style="background-color: var(--color-primary-teal);">TA</div>
+      <div class="user-info-sm">
+        <div class="user-name-sm">Tanvir Ahmed</div>
+        <div class="user-email-sm">CUET • CSE</div>
+      </div>
+      <a href="../login.html" class="sidebar-logout" title="Log Out">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT WRAPPER ================= -->
+  <div class="dashboard-main">
+    
+    <!-- Topbar -->
+    <header class="dashboard-topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle Menu">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+        <div>
+          <h1 class="page-title">Tutor Command Portal</h1>
+          <div class="page-breadcrumb">Tuition Chai • Chattogram Region</div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <!-- Bilingual Switcher -->
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn lang-btn-en active">EN</button>
+          <button type="button" class="lang-btn lang-btn-bn">বাংলা</button>
+        </div>
+
+        <span class="badge badge-verified">
+          <svg class="icon" style="width: 13px; height: 13px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          CUET Verified Tutor
+        </span>
+
+        <button class="topbar-action-btn" onclick="openNotificationDrawer()" aria-label="Notifications">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notif-badge">2</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="dashboard-content">
+      
+      <!-- Welcome Banner with Profile Completion Bar -->
+      <section class="welcome-banner">
+        <div class="welcome-text" style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+            <h2>Welcome back, Tanvir!</h2>
+            <span class="badge badge-verified">Verified</span>
+          </div>
+          <p>You have <strong>3 new tuition matches</strong> in Nasirabad and GEC Circle matching your subjects (Higher Math, Physics).</p>
+          
+          <div class="progress-container" style="max-width: 420px;">
+            <div class="progress-header">
+              <span>Profile Completeness</span>
+              <strong>90% Complete</strong>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="welcome-actions">
+          <a href="#opportunities" class="btn btn-amber">Browse Openings</a>
+          <button class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.3);" onclick="openVerificationModal()">View Credentials</button>
+        </div>
+      </section>
+
+      <!-- Key Metrics -->
+      <section class="dashboard-stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon teal">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          </div>
+          <div>
+            <div class="stat-value">5</div>
+            <div class="stat-label">Applications Submitted</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon amber">
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div>
+            <div class="stat-value">2</div>
+            <div class="stat-label">Shortlisted by Guardian</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <div>
+            <div class="stat-value">1</div>
+            <div class="stat-label">Confirmed Placements</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon navy">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          </div>
+          <div>
+            <div class="stat-value">৳ 8,500</div>
+            <div class="stat-label">Active Monthly Salary</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Available Tuition Openings in Chattogram -->
+      <section class="panel" style="margin-bottom: 2rem;" id="opportunities-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Matching Tuition Requirements in Chattogram
+          </div>
+          <span class="badge badge-teal">94 Active Listings</span>
+        </div>
+        <div class="panel-body" style="padding: 1.5rem;">
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="grid-equal">
+            
+            <!-- Opening 1 -->
+            <div class="tuition-card featured">
+              <div class="tuition-top">
+                <span class="tuition-id">TC-2026-089 • 2 hrs ago</span>
+                <span class="badge badge-teal">HSC 1st Year</span>
+              </div>
+              <h3 class="tuition-title">HSC Physics & Higher Math</h3>
+              <div class="tuition-meta-grid">
+                <div class="meta-item">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>
+                  <span>Nasirabad Housing, Ctg</span>
+                </div>
+                <div class="meta-item">
+                  <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                  <span>4 Days / Week</span>
+                </div>
+                <div class="meta-item">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path></svg>
+                  <span>Bangla Medium</span>
+                </div>
+                <div class="meta-item">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path></svg>
+                  <span>CUET / Eng Student Pref</span>
+                </div>
+              </div>
+              <div class="tuition-footer">
+                <div class="tuition-budget">
+                  ৳ 8,500 <span>/month</span>
+                </div>
+                <button class="btn btn-sm btn-primary" onclick="openApplyModal('TC-2026-089', 'HSC Physics & Higher Math (Nasirabad)', 8500)">
+                  Apply for Tuition
+                </button>
+              </div>
+            </div>
+
+            <!-- Opening 2 -->
+            <div class="tuition-card">
+              <div class="tuition-top">
+                <span class="tuition-id">TC-2026-088 • Yesterday</span>
+                <span class="badge badge-teal">Class 10 (SSC)</span>
+              </div>
+              <h3 class="tuition-title">Class 10 SSC Candidate Science</h3>
+              <div class="tuition-meta-grid">
+                <div class="meta-item">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>
+                  <span>Panchlaish R/A, Ctg</span>
+                </div>
+                <div class="meta-item">
+                  <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                  <span>5 Days / Week</span>
+                </div>
+                <div class="meta-item">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path></svg>
+                  <span>English Version</span>
+                </div>
+                <div class="meta-item">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path></svg>
+                  <span>Science Student</span>
+                </div>
+              </div>
+              <div class="tuition-footer">
+                <div class="tuition-budget">
+                  ৳ 10,000 <span>/month</span>
+                </div>
+                <button class="btn btn-sm btn-primary" onclick="openApplyModal('TC-2026-088', 'Class 10 SSC Science (Panchlaish)', 10000)">
+                  Apply for Tuition
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section: My Application Tracking -->
+      <section class="panel" style="margin-bottom: 2rem;" id="applications-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+            My Application History & Live Status
+          </div>
+          <span class="badge badge-teal">5 Submitted</span>
+        </div>
+        <div class="panel-body" style="padding: 0;">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tuition ID & Subject</th>
+                  <th>Location</th>
+                  <th>Salary Offer</th>
+                  <th>Applied On</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div style="font-weight: 700;">TC-2026-074</div>
+                    <div style="font-size: 0.8rem; color: var(--color-text-muted);">Class 9 General Math & Physics</div>
+                  </td>
+                  <td>GEC Circle, Ctg</td>
+                  <td><span style="font-weight: 700; color: var(--color-primary-teal);">৳ 7,500</span>/mo</td>
+                  <td>Oct 28, 2026</td>
+                  <td><span class="status-pill accepted">Accepted / Placed</span></td>
+                  <td>
+                    <span class="badge badge-success">Contact Unlocked</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div style="font-weight: 700;">TC-2026-081</div>
+                    <div style="font-size: 0.8rem; color: var(--color-text-muted);">HSC 2nd Year Higher Math</div>
+                  </td>
+                  <td>Khulshi R/A, Ctg</td>
+                  <td><span style="font-weight: 700; color: var(--color-primary-teal);">৳ 8,000</span>/mo</td>
+                  <td>Oct 30, 2026</td>
+                  <td><span class="status-pill shortlisted">Shortlisted</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline" onclick="showInterviewDetails('TC-2026-081')">View Guardian Note</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div style="font-weight: 700;">TC-2026-085</div>
+                    <div style="font-size: 0.8rem; color: var(--color-text-muted);">Class 8 Math & Science</div>
+                  </td>
+                  <td>Agrabad C/A, Ctg</td>
+                  <td><span style="font-weight: 700; color: var(--color-primary-teal);">৳ 6,000</span>/mo</td>
+                  <td>Nov 01, 2026</td>
+                  <td><span class="status-pill submitted">Submitted</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-ghost" onclick="withdrawApplication('TC-2026-085')">Withdraw</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= APPLY MODAL ================= -->
+  <div class="modal-overlay" id="apply-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Apply for Tuition</h3>
+        <button class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </div>
+
+      <form id="apply-form" onsubmit="submitTuitionApplication(event)">
+        <div class="modal-body">
+          <div style="background-color: var(--color-bg-subtle); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem;">
+            <div style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 700;" id="apply-tuition-id">TC-2026-089</div>
+            <div style="font-size: 1.1rem; font-weight: 700; color: var(--color-primary-navy);" id="apply-tuition-title">HSC Physics & Higher Math</div>
+            <div style="font-size: 0.9rem; color: var(--color-primary-teal); font-weight: 700; margin-top: 0.25rem;" id="apply-tuition-budget">Monthly Budget: ৳ 8,500/month</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="apply-message">Personalized Application Message <span class="required">*</span></label>
+            <textarea id="apply-message" class="form-textarea" placeholder="Explain your teaching approach, board results, and why you are the best match for this student..." required></textarea>
+            <div class="form-helper">Mention your university credentials and relevant teaching experience in Chattogram.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="apply-rate">Your Proposed Monthly Salary (BDT) <span class="required">*</span></label>
+            <div class="input-group">
+              <span class="input-prefix">৳</span>
+              <input type="number" id="apply-rate" class="form-control" value="8500" required>
+            </div>
+          </div>
+
+          <div style="font-size: 0.775rem; color: var(--color-text-muted);">
+            🔒 Duplicate applications are automatically prevented by database constraints. You may withdraw anytime before guardian acceptance.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= VERIFICATION MODAL ================= -->
+  <div class="modal-overlay" id="verification-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Tutor Academic Verification Center</h3>
+        <button class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--color-teal-light); color: var(--color-primary-teal); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem;">
+            <svg class="icon" style="width: 28px; height: 28px;" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <h4>Verified Academic Status</h4>
+          <p style="font-size: 0.85rem;">Your credentials have been authenticated by the Tuition Chai team.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: var(--color-bg-subtle); border-radius: var(--radius-md);">
+            <div>
+              <div style="font-weight: 600; font-size: 0.875rem;">CUET Student Identity Card</div>
+              <div style="font-size: 0.75rem; color: var(--color-text-muted);">Verified on Oct 15, 2026</div>
+            </div>
+            <span class="badge badge-success">Approved</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: var(--color-bg-subtle); border-radius: var(--radius-md);">
+            <div>
+              <div style="font-weight: 600; font-size: 0.875rem;">HSC Board Transcript (Science)</div>
+              <div style="font-size: 0.75rem; color: var(--color-text-muted);">GPA 5.00 Verified</div>
+            </div>
+            <span class="badge badge-success">Approved</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Smartphone Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="#overview" class="mobile-bottom-item active" onclick="switchSection('overview', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>Overview</span>
+    </a>
+    <a href="#opportunities" class="mobile-bottom-item" onclick="switchSection('opportunities', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <span>Tuitions</span>
+    </a>
+    <a href="#applications" class="mobile-bottom-item" onclick="switchSection('applications', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+      <span>Applied</span>
+    </a>
+    <a href="javascript:void(0)" class="mobile-bottom-item" onclick="openVerificationModal()" style="color: var(--color-primary-teal);">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      <span>Badge</span>
+    </a>
+    <a href="#settings" class="mobile-bottom-item" onclick="switchSection('settings', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <script src="../js/translations.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    function toggleSidebar() {
+      const sb = document.getElementById('dashboard-sidebar');
+      const bd = document.getElementById('sidebar-backdrop');
+      sb.classList.toggle('open');
+      bd.classList.toggle('show');
+    }
+
+    function switchSection(sectionId, linkEl) {
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      if (linkEl) linkEl.classList.add('active');
+      window.TuitionChai.showToast('Navigated', 'Switched to ' + sectionId.replace('-', ' ').toUpperCase());
+    }
+
+    function openApplyModal(id, title, budget) {
+      document.getElementById('apply-tuition-id').textContent = id;
+      document.getElementById('apply-tuition-title').textContent = title;
+      document.getElementById('apply-tuition-budget').textContent = 'Monthly Budget: ৳ ' + budget.toLocaleString('en-BD') + '/month';
+      document.getElementById('apply-rate').value = budget;
+      window.TuitionChai.openModal('apply-modal');
+    }
+
+    function submitTuitionApplication(e) {
+      e.preventDefault();
+      window.TuitionChai.closeModal('apply-modal');
+      window.TuitionChai.showToast('Application Sent!', 'Guardian has been notified of your application. Status: Submitted.', 'success');
+    }
+
+    function withdrawApplication(id) {
+      if (confirm('Are you sure you want to withdraw application ' + id + '?')) {
+        window.TuitionChai.showToast('Application Withdrawn', id + ' has been withdrawn.', 'info');
+      }
+    }
+
+    function showInterviewDetails(id) {
+      alert('Guardian Note: "We would like to request an introductory trial class this Friday at 4:30 PM. Please confirm availability."');
+    }
+
+    function openVerificationModal() {
+      window.TuitionChai.openModal('verification-modal');
+    }
+
+    function openNotificationDrawer() {
+      window.TuitionChai.showToast('Notifications', '2 unread notifications: Application TC-2026-081 shortlisted by guardian.', 'info');
+    }
+  </script>
+</body>
+</html>
